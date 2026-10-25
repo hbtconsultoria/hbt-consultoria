@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBTech Consultoria | Gestão, Governança de TI & Projetos</title>
+    <meta name="description" content="Consultoria especializada em Gestão de Projetos, Mapeamento de Processos, Governança de SLA e Reestruturação Operacional de TI.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#F5811F',
+                            'orange-hover': '#e06f12',
+                            'orange-light': 'rgba(245, 129, 31, 0.12)',
+                            dark: '#0D0D11',
+                            card: '#18181F',
+                            cardBorder: '#272732',
+                            surface: '#121217',
+                            text: '#F3F4F6',
+                            muted: '#9CA3AF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow-orange': '0 0 25px -5px rgba(245, 129, 31, 0.3)',
+                        'glow-card': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles & Glassmorphism */
+        body {
+            background-color: #0D0D11;
+            color: #F3F4F6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-nav {
+            background: rgba(13, 13, 17, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FFFFFF 0%, #D1D5DB 50%, #F5811F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-6px);
+            border-color: #F5811F;
+            box-shadow: 0 12px 30px -10px rgba(245, 129, 31, 0.25);
+        }
+
+        /* Gradient background accents */
+        .bg-grid-pattern {
+            background-size: 30px 30px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Pulse aura for badges */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite;
+        }
+    </style>
+</head>
+<body class="antialiased bg-brand-dark text-brand-text selection:bg-brand-orange selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-brand-cardBorder/60 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- BRAND LOGO -->
+                <a href="#inicio" class="flex items-center space-x-2 group focus:outline-none">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-orange to-amber-600 flex items-center justify-center text-white font-extrabold text-xl shadow-glow-orange group-hover:scale-105 transition-transform duration-300">
+                        HB
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-extrabold tracking-tight text-white leading-tight">
+                            <span class="text-brand-orange">HBT</span>ech
+                        </span>
+                        <span class="text-[10px] tracking-widest uppercase font-semibold text-brand-muted">Consultoria</span>
+                    </div>
+                </a>
+
+                <!-- DESKTOP NAVIGATION LINKS -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#inicio" class="hover:text-brand-orange transition-colors duration-200">Início</a>
+                    <a href="#sobre" class="hover:text-brand-orange transition-colors duration-200">Sobre</a>
+                    <a href="#servicos" class="hover:text-brand-orange transition-colors duration-200">Serviços</a>
+                    <a href="#metodologia" class="hover:text-brand-orange transition-colors duration-200">Metodologia</a>
+                    <a href="#contato" class="hover:text-brand-orange transition-colors duration-200">Contato</a>
+                </nav>
+
+                <!-- HEADER ACTION BUTTON -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20solicitar%20um%20diagnóstico%20com%20a%20HBTech%20Consultoria." 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-semibold text-sm text-white bg-brand-orange hover:bg-brand-orange-hover transition-all duration-300 shadow-glow-orange hover:shadow-lg hover:-translate-y-0.5">
+                        <i class="fa-brands fa-whatsapp text-lg mr-2"></i>
+                        Falar no WhatsApp
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" type="button" class="text-brand-muted hover:text-white focus:outline-none p-2 rounded-lg bg-brand-card border border-brand-cardBorder" aria-label="Abrir Menu">
+                        <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE DROPDOWN MENU -->
+        <div id="mobileMenu" class="hidden md:hidden bg-brand-surface border-b border-brand-cardBorder px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium hover:bg-brand-card hover:text-brand-orange">Início</a>
+            <a href="#sobre" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium hover:bg-brand-card hover:text-brand-orange">Sobre</a>
+            <a href="#servicos" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium hover:bg-brand-card hover:text-brand-orange">Serviços</a>
+            <a href="#metodologia" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium hover:bg-brand-card hover:text-brand-orange">Metodologia</a>
+            <a href="#contato" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium hover:bg-brand-card hover:text-brand-orange">Contato</a>
+            <div class="pt-2">
+                <a href="#contato" class="mobile-nav-link block w-full text-center px-5 py-3 rounded-xl font-semibold text-white bg-brand-orange hover:bg-brand-orange-hover">
+                    Solicitar Diagnóstico
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden bg-grid-pattern">
+        <!-- Background Ambient Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
+        <div class="absolute top-1/3 right-10 w-72 h-72 bg-amber-500/10 rounded-full blur-[90px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                
+                <!-- BADGE -->
+                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-brand-orange-light border border-brand-orange/30 mb-8">
+                    <span class="w-2 h-2 rounded-full bg-brand-orange animate-ping"></span>
+                    <span class="text-xs sm:text-sm font-semibold text-brand-orange tracking-wide">Excelência Operacional & Governança de TI</span>
+                </div>
+
+                <!-- MAIN HEADING -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight sm:leading-none mb-6">
+                    Transformando Gestão e Governança de TI em <span class="gradient-text">Resultados Reais</span>
+                </h1>
+
+                <!-- SUBTITLE -->
+                <p class="text-base sm:text-xl text-brand-muted font-normal max-w-3xl mx-auto mb-10 leading-relaxed">
+                    Consultoria especializada em **Gestão de Projetos**, **Mapeamento de Processos** e **Governança de SLA** para elevar a maturidade operacional, mitigar riscos e impulsionar o seu negócio.
+                </p>
+
+                <!-- CALL TO ACTION BUTTONS -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                    <a href="#contato" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base text-white bg-brand-orange hover:bg-brand-orange-hover shadow-glow-orange hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-center">
+                        Solicitar Diagnóstico Gratuito
+                        <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                    <a href="#servicos" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base text-brand-text bg-brand-card hover:bg-brand-cardBorder border border-brand-cardBorder hover:border-brand-orange/50 transition-all duration-300 text-center">
+                        Conhecer Serviços
+                    </a>
+                </div>
+
+                <!-- METRICS / HIGHLIGHTS -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 border-t border-brand-cardBorder/60">
+                    <div class="p-4 rounded-2xl bg-brand-card/50 border border-brand-cardBorder/40 backdrop-blur-sm">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-brand-orange mb-1">+20 Anos</div>
+                        <div class="text-sm font-medium text-brand-muted">de Experiência em TI & Operações</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-brand-card/50 border border-brand-cardBorder/40 backdrop-blur-sm">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">Ágil & Tradicional</div>
+                        <div class="text-sm font-medium text-brand-muted">Scrum, Kanban, PMBOK & ITIL</div>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-brand-card/50 border border-brand-cardBorder/40 backdrop-blur-sm">
+                        <div class="text-3xl sm:text-4xl font-extrabold text-brand-orange mb-1">99.8% SLA</div>
+                        <div class="text-sm font-medium text-brand-muted">Foco em Excelência & Entregas</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE A HBTECH CONSULTORIA -->
+    <section id="sobre" class="py-20 sm:py-28 bg-brand-surface border-y border-brand-cardBorder/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- LEFT CONTENT -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 text-brand-orange font-semibold text-sm tracking-widest uppercase">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Sobre a HBTech Consultoria</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                        Sua parceira estratégica em reestruturação, governança e alta performance
+                    </h2>
+                    <p class="text-brand-muted leading-relaxed text-base sm:text-lg">
+                        A **HBTech Consultoria** nasce da experiência sólida na liderança de operações de Tecnologia da Informação, gerenciamento de projetos complexos e estruturação de governança de serviços. 
+                    </p>
+                    <p class="text-brand-muted leading-relaxed text-base">
+                        Atuamos lado a lado com executivos e equipes para diagnosticar gargalos, mapear fluxos de trabalho, organizar operações de Service Delivery / Technical Account Management (TAM) e implementar boas práticas que trazem previsibilidade e resultados financeiros tangíveis.
+                    </p>
+
+                    <!-- BULLET POINTS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-orange/20 text-brand-orange flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-200">Visão Holística: Pessoas, Processos e Tecnologia</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-orange/20 text-brand-orange flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-200">Redução de Custos e Eliminação de Desperdícios</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-orange/20 text-brand-orange flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-200">Governança de SLA & Gestão de Fornecedores</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-orange/20 text-brand-orange flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-200">Acompanhamento Próximo e Personalizado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT CARDS FEATURE -->
+                <div class="lg:col-span-5">
+                    <div class="relative">
+                        <!-- Decorative glow -->
+                        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-orange to-amber-600 opacity-20 blur-xl"></div>
+                        
+                        <div class="relative rounded-2xl bg-brand-card border border-brand-cardBorder p-6 sm:p-8 space-y-6">
+                            <h3 class="text-xl font-bold text-white border-b border-brand-cardBorder pb-4">
+                                Por que transformar sua TI conosco?
+                            </h3>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-4 p-3 rounded-xl bg-brand-dark/50 border border-brand-cardBorder/50">
+                                    <div class="p-3 rounded-lg bg-brand-orange/10 text-brand-orange font-bold text-lg">
+                                        <i class="fa-solid fa-chart-line"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Garantia de Previsibilidade</h4>
+                                        <p class="text-xs text-brand-muted mt-1">Elimine imprevistos em cronogramas e orçamentos através de uma gestão rigorosa.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4 p-3 rounded-xl bg-brand-dark/50 border border-brand-cardBorder/50">
+                                    <div class="p-3 rounded-lg bg-brand-orange/10 text-brand-orange font-bold text-lg">
+                                        <i class="fa-solid fa-arrows-spin"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Processos Fluidos e Claros</h4>
+                                        <p class="text-xs text-brand-muted mt-1">Fluxos desenhados para que cada membro da equipe saiba exatamente o seu papel.</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4 p-3 rounded-xl bg-brand-dark/50 border border-brand-cardBorder/50">
+                                    <div class="p-3 rounded-lg bg-brand-orange/10 text-brand-orange font-bold text-lg">
+                                        <i class="fa-solid fa-handshake"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm">Alinhamento Executivo</h4>
+                                        <p class="text-xs text-brand-muted mt-1">Tradução técnica para a linguagem dos negócios e metas da diretoria.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS PRINCIPAIS -->
+    <section id="servicos" class="py-20 sm:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center space-x-2 text-brand-orange font-semibold text-sm tracking-widest uppercase mb-3">
+                    <i class="fa-solid fa-cubes"></i>
+                    <span>Áreas de Especialidade</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Soluções sob medida para o crescimento do seu negócio
+                </h2>
+                <p class="text-brand-muted mt-4 text-base">
+                    Nossos serviços visam estruturar a gestão de TI com excelência, reduzindo atritos operacionais e maximizando o retorno sobre o investimento.
+                </p>
+            </div>
+
+            <!-- SERVICE CARDS GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- CARD 1 -->
+                <div class="card-hover rounded-2xl bg-brand-card border border-brand-cardBorder p-8 relative flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-orange-light text-brand-orange flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Gestão de Projetos & PMO</h3>
+                        <p class="text-brand-muted text-sm leading-relaxed mb-6">
+                            Estruturação e acompanhamento fim a fim de projetos de TI. Aplicação de metodologias ágeis (Scrum/Kanban) ou tradicionais (PMBOK) para assegurar prazos, escopos e custos sem surpresas.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gray-300 mb-6">
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Implementação de Escritório de Projetos (PMO)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Gestão de Cronograma, Riscos e Entregáveis</li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Dashboards de acompanhamento executivo</li>
+                        </ul>
+                    </div>
+                    <a href="#contato" class="inline-flex items-center text-sm font-bold text-brand-orange hover:text-amber-400 transition-colors">
+                        Saber mais sobre este serviço <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="card-hover rounded-2xl bg-brand-card border border-brand-cardBorder p-8 relative flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-orange-light text-brand-orange flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-sitemap"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Mapeamento de Processos & Fluxogramas</h3>
+                        <p class="text-brand-muted text-sm leading-relaxed mb-6">
+                            Análise minuciosa da operação atual (AS-IS) e desenho do modelo ideal (TO-BE). Identificação de gargalos, redundâncias e oportunidades de automação para acelerar entregas.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gray-300 mb-6">
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Documentação e criação de POPs (Procedimentos Padrão)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Eliminação de gargalos e retrabalhos</li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Matriz RACI de responsabilidades</li>
+                        </ul>
+                    </div>
+                    <a href="#contato" class="inline-flex items-center text-sm font-bold text-brand-orange hover:text-amber-400 transition-colors">
+                        Saber mais sobre este serviço <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="card-hover rounded-2xl bg-brand-card border border-brand-cardBorder p-8 relative flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-orange-light text-brand-orange flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Governança de SLA & Technical Account Management (TAM)</h3>
+                        <p class="text-brand-muted text-sm leading-relaxed mb-6">
+                            Atuação estratégica no relacionamento com grandes clientes ou fornecedores de TI. Definição, monitoramento e garantia de cumprimento de Acordos de Nível de Serviço (SLA e OLA).
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gray-300 mb-6">
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Gestão de Contratos e Terceiros</li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Definição de KPIs, SLAs e Relatórios Periódicos</li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Mediação técnica e gestão de crises</li>
+                        </ul>
+                    </div>
+                    <a href="#contato" class="inline-flex items-center text-sm font-bold text-brand-orange hover:text-amber-400 transition-colors">
+                        Saber mais sobre este serviço <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="card-hover rounded-2xl bg-brand-card border border-brand-cardBorder p-8 relative flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-orange-light text-brand-orange flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Reestruturação Operacional de TI</h3>
+                        <p class="text-brand-muted text-sm leading-relaxed mb-6">
+                            Ajustes no dimensionamento de equipes, otimização da central de atendimento (Service Desk/Help Desk), padronização de chamados e aumento da eficiência operacional.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-gray-300 mb-6">
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Redesenho de centrais de atendimento (N1/N2/N3)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Capacitação e alinhamento de lideranças técnicas</li>
+                            <li class="flex items-center"><i class="fa-solid fa-angle-right text-brand-orange mr-2"></i> Governança baseada nas melhores práticas ITIL</li>
+                        </ul>
+                    </div>
+                    <a href="#contato" class="inline-flex items-center text-sm font-bold text-brand-orange hover:text-amber-400 transition-colors">
+                        Saber mais sobre este serviço <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- METODOLOGIA DE ATUAÇÃO -->
+    <section id="metodologia" class="py-20 sm:py-28 bg-brand-surface border-y border-brand-cardBorder/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center space-x-2 text-brand-orange font-semibold text-sm tracking-widest uppercase mb-3">
+                    <i class="fa-solid fa-diagram-project"></i>
+                    <span>Como Trabalhamos</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Metodologia em 4 Passos
+                </h2>
+                <p class="text-brand-muted mt-4 text-base">
+                    Um processo estruturado, transparente e focado em gerar valor desde as primeiras semanas de projeto.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- STEP 1 -->
+                <div class="rounded-2xl bg-brand-card border border-brand-cardBorder p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-3xl font-extrabold text-brand-orange/40">01</span>
+                            <div class="w-10 h-10 rounded-full bg-brand-orange/10 text-brand-orange flex items-center justify-center">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Diagnóstico & Imersão</h3>
+                        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                            Entrevistas, análise de dados atuais, mapeamento de dores e identificação dos pontos críticos da operação.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="rounded-2xl bg-brand-card border border-brand-cardBorder p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-3xl font-extrabold text-brand-orange/40">02</span>
+                            <div class="w-10 h-10 rounded-full bg-brand-orange/10 text-brand-orange flex items-center justify-center">
+                                <i class="fa-solid fa-compass"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Mapeamento & Estratégia</h3>
+                        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                            Elaboração do plano de ação, definição dos novos fluxos, métricas de SLA e metas de desempenho.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="rounded-2xl bg-brand-card border border-brand-cardBorder p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-3xl font-extrabold text-brand-orange/40">03</span>
+                            <div class="w-10 h-10 rounded-full bg-brand-orange/10 text-brand-orange flex items-center justify-center">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Execução & Governança</h3>
+                        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                            Implementação das mudanças com acompanhamento direto, reuniões de alinhamento e validação de entregas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="rounded-2xl bg-brand-card border border-brand-cardBorder p-6 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="text-3xl font-extrabold text-brand-orange/40">04</span>
+                            <div class="w-10 h-10 rounded-full bg-brand-orange/10 text-brand-orange flex items-center justify-center">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Sustentação & Resultados</h3>
+                        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                            Acompanhamento dos KPIs pós-implementação, transferência de conhecimento e consolidação da nova cultura.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULÁRIO DE CONTATO / CTA -->
+    <section id="contato" class="py-20 sm:py-28 relative bg-grid-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- CONTACT LEFT TEXT -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center space-x-2 text-brand-orange font-semibold text-sm tracking-widest uppercase">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Fale Conosco</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                        Vamos transformar a governança de TI da sua empresa?
+                    </h2>
+                    <p class="text-brand-muted leading-relaxed">
+                        Preencha o formulário ao lado para agendar uma reunião inicial sem compromisso e receber um diagnóstico preliminar da sua operação.
+                    </p>
+
+                    <!-- DIRECT CONTACT INFO -->
+                    <div class="space-y-4 pt-6 border-t border-brand-cardBorder">
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-card border border-brand-cardBorder flex items-center justify-center text-brand-orange text-lg">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-brand-muted block uppercase font-semibold">E-mail Institucional</span>
+                                <a href="mailto:contato.hbtconsultoria@gmail.com" class="text-white font-medium hover:text-brand-orange transition-colors">
+                                    contato.hbtconsultoria@gmail.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-card border border-brand-cardBorder flex items-center justify-center text-brand-orange text-lg">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-brand-muted block uppercase font-semibold">LinkedIn Oficial</span>
+                                <a href="https://www.linkedin.com/company/139803908/" target="_blank" rel="noopener noreferrer" class="text-white font-medium hover:text-brand-orange transition-colors">
+                                    HBTech Consultoria no LinkedIn
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-card border border-brand-cardBorder flex items-center justify-center text-brand-orange text-lg">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-brand-muted block uppercase font-semibold">Localização</span>
+                                <span class="text-white font-medium">São Paulo - SP | Atendimento Nacional</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- FORM CARD -->
+                <div class="lg:col-span-7">
+                    <div class="rounded-2xl bg-brand-card border border-brand-cardBorder p-6 sm:p-10 shadow-glow-card relative">
+                        
+                        <form id="contactForm" class="space-y-6">
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <!-- NOME -->
+                                <div>
+                                    <label for="nome" class="block text-xs font-semibold uppercase text-brand-muted mb-2">Seu Nome *</label>
+                                    <input type="text" id="nome" name="nome" required placeholder="Ex: João Silva" 
+                                           class="w-full px-4 py-3 rounded-xl bg-brand-dark border border-brand-cardBorder text-white placeholder-gray-500 focus:outline-none focus:border-brand-orange transition-colors">
+                                </div>
+                                <!-- EMAIL -->
+                                <div>
+                                    <label for="email" class="block text-xs font-semibold uppercase text-brand-muted mb-2">Seu E-mail *</label>
+                                    <input type="email" id="email" name="email" required placeholder="joao@suaempresa.com.br" 
+                                           class="w-full px-4 py-3 rounded-xl bg-brand-dark border border-brand-cardBorder text-white placeholder-gray-500 focus:outline-none focus:border-brand-orange transition-colors">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <!-- EMPRESA -->
+                                <div>
+                                    <label for="empresa" class="block text-xs font-semibold uppercase text-brand-muted mb-2">Empresa</label>
+                                    <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" 
+                                           class="w-full px-4 py-3 rounded-xl bg-brand-dark border border-brand-cardBorder text-white placeholder-gray-500 focus:outline-none focus:border-brand-orange transition-colors">
+                                </div>
+                                <!-- TELEFONE -->
+                                <div>
+                                    <label for="telefone" class="block text-xs font-semibold uppercase text-brand-muted mb-2">Telefone / WhatsApp *</label>
+                                    <input type="tel" id="telefone" name="telefone" required placeholder="(11) 99999-9999" 
+                                           class="w-full px-4 py-3 rounded-xl bg-brand-dark border border-brand-cardBorder text-white placeholder-gray-500 focus:outline-none focus:border-brand-orange transition-colors">
+                                </div>
+                            </div>
+
+                            <!-- SERVIÇO DE INTERESSE -->
+                            <div>
+                                <label for="servico" class="block text-xs font-semibold uppercase text-brand-muted mb-2">Serviço de Maior Interesse</label>
+                                <select id="servico" name="servico" 
+                                        class="w-full px-4 py-3 rounded-xl bg-brand-dark border border-brand-cardBorder text-white focus:outline-none focus:border-brand-orange transition-colors">
+                                    <option value="todos">Selecione uma opção...</option>
+                                    <option value="pmo">Gestão de Projetos & PMO</option>
+                                    <option value="processos">Mapeamento de Processos & Fluxogramas</option>
+                                    <option value="sla">Governança de SLA & TAM</option>
+                                    <option value="reestruturacao">Reestruturação Operacional de TI</option>
+                                    <option value="outro">Outro assunto</option>
+                                </select>
+                            </div>
+
+                            <!-- MENSAGEM -->
+                            <div>
+                                <label for="mensagem" class="block text-xs font-semibold uppercase text-brand-muted mb-2">Como podemos ajudar? *</label>
+                                <textarea id="mensagem" name="mensagem" rows="4" required placeholder="Descreva brevemente o desafio da sua operação de TI..." 
+                                          class="w-full px-4 py-3 rounded-xl bg-brand-dark border border-brand-cardBorder text-white placeholder-gray-500 focus:outline-none focus:border-brand-orange transition-colors"></textarea>
+                            </div>
+
+                            <!-- SUBMIT BUTTON -->
+                            <button type="submit" id="submitBtn" 
+                                    class="w-full py-4 rounded-xl font-bold text-white bg-brand-orange hover:bg-brand-orange-hover shadow-glow-orange transition-all duration-300 flex items-center justify-center">
+                                <span>Enviar Mensagem</span>
+                                <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </button>
+
+                        </form>
+
+                        <!-- SUCCESS MESSAGE OVERLAY (Hidden by default) -->
+                        <div id="successModal" class="hidden absolute inset-0 rounded-2xl bg-brand-card/95 backdrop-blur-md border border-brand-orange p-8 flex flex-col items-center justify-center text-center z-20">
+                            <div class="w-16 h-16 rounded-full bg-brand-orange/20 text-brand-orange flex items-center justify-center text-3xl mb-4">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Mensagem Recebida!</h3>
+                            <p class="text-brand-muted text-sm max-w-md mb-6">
+                                Obrigado pelo contato. Nossa equipe analisará sua solicitação e retornará em breve.
+                            </p>
+                            <button id="closeModalBtn" class="px-6 py-2.5 rounded-xl font-semibold text-white bg-brand-orange hover:bg-brand-orange-hover transition-colors">
+                                Enviar Nova Mensagem
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-surface border-t border-brand-cardBorder/60 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                
+                <!-- BRAND INFO -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-orange flex items-center justify-center text-white font-extrabold text-sm">
+                        HB
+                    </div>
+                    <span class="text-lg font-bold text-white tracking-tight">
+                        <span class="text-brand-orange">HBT</span>ech Consultoria
+                    </span>
+                </div>
+
+                <!-- QUICK LINKS -->
+                <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-brand-muted">
+                    <a href="#inicio" class="hover:text-white transition-colors">Início</a>
+                    <a href="#sobre" class="hover:text-white transition-colors">Sobre</a>
+                    <a href="#servicos" class="hover:text-white transition-colors">Serviços</a>
+                    <a href="#metodologia" class="hover:text-white transition-colors">Metodologia</a>
+                    <a href="#contato" class="hover:text-white transition-colors">Contato</a>
+                </div>
+
+                <!-- SOCIAL & COPYRIGHT -->
+                <div class="flex flex-col items-center md:items-end text-xs text-brand-muted space-y-2">
+                    <div class="flex items-center space-x-4">
+                        <a href="https://www.linkedin.com/company/139803908/" target="_blank" rel="noopener noreferrer" class="text-brand-muted hover:text-brand-orange transition-colors text-lg" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:contato.hbtconsultoria@gmail.com" class="text-brand-muted hover:text-brand-orange transition-colors text-lg" aria-label="E-mail">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
+                    <p>&copy; <span id="year"></span> HBTech Consultoria. Todos os direitos reservados.</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Close mobile menu when link is clicked
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Form submission handling
+        const contactForm = document.getElementById('contactForm');
+        const successModal = document.getElementById('successModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const submitBtn = document.getElementById('submitBtn');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Simulate form submission visual feedback
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Enviando...';
+
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Enviar Mensagem</span><i class="fa-solid fa-paper-plane ml-2"></i>';
+                
+                // Show success feedback overlay
+                successModal.classList.remove('hidden');
+                contactForm.reset();
+            }, 1000);
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+        });
+
+        // Sticky Header scroll styling effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg', 'bg-brand-dark/95');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-brand-dark/95');
+            }
+        });
+    </script>
+</body>
+</html>
